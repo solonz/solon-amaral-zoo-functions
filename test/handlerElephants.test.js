@@ -29,3 +29,5 @@ describe('6 - crie uma função que retorna dados sobre os elefantes do zoo', ()
     expect(handlerElephants(42)).toBe('Parâmetro inválido, é necessário uma string');
   });
 });
+
+// Esse cumpre os requisitos 6, 7 e 15
