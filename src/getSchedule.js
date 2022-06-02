@@ -61,5 +61,5 @@ function getSchedule(scheduleTarget) {
   }
   return getAnimalSchedule(scheduleTarget);
 }
-console.log(getSchedule('Tuesday'));
+console.log(getSchedule('Bears'));
 module.exports = getSchedule;
