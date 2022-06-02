@@ -33,33 +33,50 @@ const diasDaSemana = {
 
 };
 
+const days = Object.keys(diasDaSemana);
+const animals = species.map((bichinho) => bichinho.name);
+
 // console.log(diasDaSemana);
-let days = Object.keys(hours);
-const animalsNames = species.map(({ name }) => name);
 
-function getAnimalSchedule(scheduleTarget) {
-  if (days.includes(scheduleTarget)) {
-    days = [scheduleTarget];
-    return days.reduce((acc, cur) => {
-      if (!acc[cur]) {
-        acc[cur] = {
-          officeHour: `Open from ${hours[cur].open}am until ${hours[cur].close}pm`,
-          exhibition: species.filter((a) => a.availability.includes([cur])).map((b) => b.name),
-        };
-        return acc;
-      }
-    }, {});
+function getSchedule(param) {
+  if (days.includes(param)) {
+    return { [param]: diasDaSemana[param] };
   }
-}
-// const result = species.find((c) => c.name === scheduleTarget);
-//   return result.availability;
-
-// .map((d) => d.availability)
-function getSchedule(scheduleTarget) {
-  if (!scheduleTarget.includes(days) && !scheduleTarget.includes(animalsNames)) {
+  if (animals.includes(param)) {
+    return species.find((bichinho) => bichinho.name.includes(param)).availability;
+  }
+  if (!param) {
     return diasDaSemana;
   }
-  return getAnimalSchedule(scheduleTarget);
+  return diasDaSemana;
 }
-console.log(getSchedule('Bears'));
+console.log(getSchedule('Tuesday'));
 module.exports = getSchedule;
+
+// let days = Object.keys(hours);
+// const animalsNames = species.map(({ name }) => name);
+
+// function getAnimalSchedule(scheduleTarget) {
+//   if (days.includes(scheduleTarget)) {
+//     days = [scheduleTarget];
+//     return days.reduce((acc, cur) => {
+//       if (!acc[cur]) {
+//         acc[cur] = {
+//           officeHour: `Open from ${hours[cur].open}am until ${hours[cur].close}pm`,
+//           exhibition: species.filter((a) => a.availability.includes([cur])).map((b) => b.name),
+//         };
+//         return acc;
+//       }
+//     }, {});
+//   }
+// }
+// // const result = species.find((c) => c.name === scheduleTarget);
+// //   return result.availability;
+
+// // .map((d) => d.availability)
+// function getSchedule(scheduleTarget) {
+//   if (scheduleTarget.includes(days) && scheduleTarget.includes(animalsNames)) {
+//     return diasDaSemana;
+//   }
+//   return getAnimalSchedule(scheduleTarget);
+// }
